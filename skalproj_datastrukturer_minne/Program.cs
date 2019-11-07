@@ -14,7 +14,7 @@ namespace SkalProj_Datastrukturer_Minne
         /// <param name="args"></param>
         static void Main()
         {
-           
+
             while (true)
             {
 
@@ -82,6 +82,96 @@ namespace SkalProj_Datastrukturer_Minne
             //string value = input.substring(1);
 
             //switch(nav){...}
+
+
+            //MY OWN CODE:
+            //Answers
+            //Q2: När ökar listans kapacitet (alltså den underliggande arrayens storlek)?
+            //A2: När man passerar gränsen. 4->5 strängar => kapaciteten ökar från 4->8
+            //                              8->9 strängar => kapaciteten ökar från 8->16
+            //Q3: Med hur mycket ökar kapaciteten?
+            //A3: med 100% = den dubblas (4->8->16)
+            //Q4: Varför ökar inte listans kapacitet i samma takt som element läggs till?
+            //A4: När arrayens capacitet överskrids skapas en ny array med dubblad capacitet på heapen och 
+            //      innehållet i den gamla arrayen kopieras till den nya arrayen
+            //Q5: Minskar kapaciteten när element tas bort ur listan?
+            //A5: NEJ!
+            //Q6: När är det då fördelaktigt att använda en egendefinierad array i stället för en lista?
+            //A6: När du vet redan från början hur stor listan ska vara och dess storlek ändras inte
+
+            List<string> strings = new List<string>();
+            string answer = "";
+            char firstLetter = ' ';
+            while (true)
+            {
+                Console.WriteLine("'Q' to return to menu");
+                Console.WriteLine("'+' to add the text");
+                Console.WriteLine("'-' to remove the text");
+
+
+                try
+                {
+                    answer = Console.ReadLine();
+                    firstLetter = answer[0];
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter some input!");
+                }
+
+                switch (firstLetter)
+                {
+                    case '+':
+                        //Before
+                        Console.WriteLine("The List before adding: ");
+                        foreach (var item in strings)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine($"Array Capacity before adding: {strings.Capacity}");
+
+                        strings.Add(answer.Substring(1));
+
+                        //After
+                        Console.WriteLine("The List after adding: ");
+                        foreach (var item in strings)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine($"Array Capacity after adding: {strings.Capacity}");
+                        break;
+                    case '-':
+                        //Before
+                        Console.WriteLine("The List before removing: ");
+                        foreach (var item in strings)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine($"Array Capacity before removing: {strings.Capacity}");
+
+                        if (strings.Contains(answer.Substring(1))) strings.Remove(answer.Substring(1));
+                        else Console.WriteLine("The word was not found in the list!");
+
+                        //After
+                        Console.WriteLine("The List after removing: ");
+                        foreach (var item in strings)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine($"Array Capacity after removing: {strings.Capacity}");
+                        break;
+                    case 'Q':
+                        return;
+
+                    default:
+                        break;
+                }
+            }
+
+
+
+
         }
 
         /// <summary>
@@ -94,6 +184,82 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            //MY OWN CODE
+            Queue<string> ica = new Queue<string>();
+            string answer = "";
+            char firstLetter = ' ';
+
+            while (true)
+            {
+                Console.WriteLine("'Q' to return to menu");
+                Console.WriteLine("'+' to add the person to the queue");
+                Console.WriteLine("'-' to remove the person from the queue");
+
+                try
+                {
+                    answer = Console.ReadLine();
+                    firstLetter = answer[0];
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter some input!");
+                }
+
+                switch(firstLetter)
+                {
+                    case '+':
+                        //Before
+                        Console.WriteLine("The Queue before adding: ");
+                        foreach (var item in ica)
+                        {
+                            Console.WriteLine(item);
+                        }
+
+                        ica.Enqueue(answer.Substring(1));
+                        Console.WriteLine($"{answer.Substring(1)} entered the Queue");
+
+
+                        //After
+                        Console.WriteLine("The Queue after adding: ");
+                        foreach (var item in ica)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        break;
+
+                    case '-':
+                        //Before
+                        Console.WriteLine("The Queue before removing: ");
+                        foreach (var item in ica)
+                        {
+                            Console.WriteLine(item);
+                        }
+
+                        if (ica.Count > 0)
+                        {
+                            string s = ica.Dequeue();
+                            Console.WriteLine($"{s} left the Queue");
+                        }
+                        else Console.WriteLine("The Queue is empty!!!!");
+                        
+
+                        //After
+                        Console.WriteLine("The Queue after removing: ");
+                        foreach (var item in ica)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        break;
+                    case 'Q':
+                        return;
+
+
+                    default:
+                        break;
+                }
+            }
         }
 
         /// <summary>
