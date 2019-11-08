@@ -102,6 +102,7 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> strings = new List<string>();
             string answer = "";
             char firstLetter = ' ';
+
             while (true)
             {
                 Console.WriteLine("'Q' to return to menu");
@@ -123,44 +124,26 @@ namespace SkalProj_Datastrukturer_Minne
                 switch (firstLetter)
                 {
                     case '+':
-                        //Before
-                        Console.WriteLine("The List before adding: ");
-                        foreach (var item in strings)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        Console.WriteLine($"Array Capacity before adding: {strings.Capacity}");
+                        PrintCollectionBefore(strings);
+                        PrintArrayCapacity(strings);
 
                         strings.Add(answer.Substring(1));
-
-                        //After
-                        Console.WriteLine("The List after adding: ");
-                        foreach (var item in strings)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        Console.WriteLine($"Array Capacity after adding: {strings.Capacity}");
+                                                
+                        PrintCollectionAfter(strings);
+                        PrintArrayCapacity(strings);
                         break;
+
                     case '-':
-                        //Before
-                        Console.WriteLine("The List before removing: ");
-                        foreach (var item in strings)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        Console.WriteLine($"Array Capacity before removing: {strings.Capacity}");
+                        PrintCollectionBefore(strings);
+                        PrintArrayCapacity(strings);
 
                         if (strings.Contains(answer.Substring(1))) strings.Remove(answer.Substring(1));
                         else Console.WriteLine("The word was not found in the list!");
 
-                        //After
-                        Console.WriteLine("The List after removing: ");
-                        foreach (var item in strings)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        Console.WriteLine($"Array Capacity after removing: {strings.Capacity}");
+                        PrintCollectionAfter(strings);
+                        PrintArrayCapacity(strings);
                         break;
+
                     case 'Q':
                         return;
 
@@ -207,35 +190,19 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine("Please enter some input!");
                 }
 
-                switch(firstLetter)
+                switch (firstLetter)
                 {
                     case '+':
-                        //Before
-                        Console.WriteLine("The Queue before adding: ");
-                        foreach (var item in ica)
-                        {
-                            Console.WriteLine(item);
-                        }
+                        PrintCollectionBefore(ica);
 
                         ica.Enqueue(answer.Substring(1));
                         Console.WriteLine($"{answer.Substring(1)} entered the Queue");
-
-
-                        //After
-                        Console.WriteLine("The Queue after adding: ");
-                        foreach (var item in ica)
-                        {
-                            Console.WriteLine(item);
-                        }
+                        
+                        PrintCollectionAfter(ica);
                         break;
 
                     case '-':
-                        //Before
-                        Console.WriteLine("The Queue before removing: ");
-                        foreach (var item in ica)
-                        {
-                            Console.WriteLine(item);
-                        }
+                        PrintCollectionBefore(ica);
 
                         if (ica.Count > 0)
                         {
@@ -243,18 +210,12 @@ namespace SkalProj_Datastrukturer_Minne
                             Console.WriteLine($"{s} left the Queue");
                         }
                         else Console.WriteLine("The Queue is empty!!!!");
-                        
 
-                        //After
-                        Console.WriteLine("The Queue after removing: ");
-                        foreach (var item in ica)
-                        {
-                            Console.WriteLine(item);
-                        }
+                        PrintCollectionAfter(ica);
                         break;
+
                     case 'Q':
                         return;
-
 
                     default:
                         break;
@@ -272,9 +233,51 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            //MY OWN CODE
+            //Q1: Varför är det inte smart att använda en STACK för att simulera en KÖ?
+            //A1: 
+
+            Stack<string> ica = new Stack<string>();
+            string answer = "";
+            char firstLetter = ' ';
+
+            while (true)
+            {
+                Console.WriteLine("'Q' to return to menu");
+                Console.WriteLine("'+' to push the person to the stack");
+                Console.WriteLine("'-' to pop the person from the stack");
+
+                try
+                {
+                    answer = Console.ReadLine();
+                    firstLetter = answer[0];
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter some input!");
+                }
+
+                switch(firstLetter)
+                {
+                    case '+':
+                        string[] arr = ica.ToArray();
+                        PrintCollectionBefore(arr);
+
+                        ica.Push(answer.Substring(1));
+
+                        arr = ica.ToArray();
+                        PrintCollectionAfter(arr);
+                        break;
+
+
+                }
+
+            }
         }
 
-        static void CheckParanthesis()
+            static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
@@ -284,5 +287,29 @@ namespace SkalProj_Datastrukturer_Minne
 
         }
 
+        public static void PrintCollectionBefore(IEnumerable<string> coll)
+        {
+            //Before
+            Console.WriteLine("Before: ");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+         }
+
+        public static void PrintCollectionAfter(IEnumerable<string> coll)
+        {
+            //After
+            Console.WriteLine("After: ");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public static void PrintArrayCapacity(List<string> list)
+        {
+            Console.WriteLine($"Array Capacity: {list.Capacity}");
+        }
     }
 }
