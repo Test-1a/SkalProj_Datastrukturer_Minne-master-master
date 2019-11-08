@@ -128,7 +128,7 @@ namespace SkalProj_Datastrukturer_Minne
                         PrintArrayCapacity(strings);
 
                         strings.Add(answer.Substring(1));
-                                                
+
                         PrintCollectionAfter(strings);
                         PrintArrayCapacity(strings);
                         break;
@@ -151,11 +151,8 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
-
-
-
-
         }
+
 
         /// <summary>
         /// Examines the datastructure Queue
@@ -197,7 +194,7 @@ namespace SkalProj_Datastrukturer_Minne
 
                         ica.Enqueue(answer.Substring(1));
                         Console.WriteLine($"{answer.Substring(1)} entered the Queue");
-                        
+
                         PrintCollectionAfter(ica);
                         break;
 
@@ -222,6 +219,7 @@ namespace SkalProj_Datastrukturer_Minne
                 }
             }
         }
+
 
         /// <summary>
         /// Examines the datastructure Stack
@@ -250,7 +248,9 @@ namespace SkalProj_Datastrukturer_Minne
 
                 try
                 {
+                    
                     answer = Console.ReadLine();
+                    Console.WriteLine($"Svar: {answer}");
                     firstLetter = answer[0];
                 }
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
@@ -259,7 +259,7 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine("Please enter some input!");
                 }
 
-                switch(firstLetter)
+                switch (firstLetter)
                 {
                     case '+':
                         string[] arr = ica.ToArray();
@@ -277,7 +277,8 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
-            static void CheckParanthesis()
+
+        static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
@@ -285,7 +286,83 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+
+            //MY OWN CODE
+            Stack<string> strings = new Stack<string>();
+            string answer = "";
+            char nextLetter = ' ';
+
+            while (true)
+            {
+                Console.WriteLine("'Q' to return to menu");
+                Console.WriteLine("Write the text that you want to check if it is wellformed");
+                
+
+                try
+                {
+                    answer = Console.ReadLine();
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter some input!");
+                }
+
+                for (int i = 0; i < answer.Count(); i++)
+                {
+                    nextLetter = answer[i];
+                    Console.WriteLine($"i: {nextLetter}");
+
+                    if (nextLetter == 'q' || nextLetter == 'Q') return;
+
+                    if (nextLetter == '(' ||
+                        nextLetter == '{' ||
+                        nextLetter == '[' ||
+                        nextLetter == ')' ||
+                        nextLetter == '}' ||
+                        nextLetter == ']')
+                    {
+                        Console.WriteLine($"i2: {nextLetter}");
+
+                        if (nextLetter == '(' ||
+                            nextLetter == '{' ||
+                            nextLetter == '[')
+                            strings.Push(nextLetter.ToString());
+                            string[] arr = strings.ToArray();
+                            PrintCollectionBefore(arr);
+
+                        if (strings.Count == 0 && nextLetter == ')' ||
+                        strings.Count == 0 && nextLetter == '}' ||
+                        strings.Count == 0 && nextLetter == ']')
+                        {
+                            Console.WriteLine($"{answer} is NOT wellformed 1!");
+                            break;
+                        }
+
+                        if (strings.Peek().Equals('(') && nextLetter == ')' ||
+                        strings.Peek().Equals('{') && nextLetter == '}' ||
+                        strings.Peek().Equals('[') && nextLetter == ']')
+                            strings.Pop();
+
+                        arr = strings.ToArray();
+                        PrintCollectionBefore(arr);
+
+                        if (i == (answer.Length - 1))
+                        {
+                            if (strings.Count == 0) Console.WriteLine($"{answer} is wellformed");
+                            else Console.WriteLine($"{answer} is NOT wellformed 2");
+                        }
+                    }
+
+                    
+                }
+
+                
+            }
+
+
         }
+
 
         public static void PrintCollectionBefore(IEnumerable<string> coll)
         {
@@ -295,7 +372,8 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 Console.WriteLine(item);
             }
-         }
+        }
+
 
         public static void PrintCollectionAfter(IEnumerable<string> coll)
         {
@@ -307,9 +385,11 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
+
         public static void PrintArrayCapacity(List<string> list)
         {
             Console.WriteLine($"Array Capacity: {list.Capacity}");
         }
     }
 }
+
