@@ -301,6 +301,7 @@ namespace SkalProj_Datastrukturer_Minne
                 try
                 {
                     answer = Console.ReadLine();
+                    Console.WriteLine($"Answer: {answer}");
                 }
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {
@@ -324,12 +325,15 @@ namespace SkalProj_Datastrukturer_Minne
                     {
                         Console.WriteLine($"i2: {nextLetter}");
 
-                        if (nextLetter == '(' ||
-                            nextLetter == '{' ||
-                            nextLetter == '[')
+                        if (nextLetter == '('
+                            || nextLetter == '{'
+                            || nextLetter == '['
+                            )
+                        {
                             strings.Push(nextLetter.ToString());
                             string[] arr = strings.ToArray();
                             PrintCollectionBefore(arr);
+                        }
 
                         if (strings.Count == 0 && nextLetter == ')' ||
                         strings.Count == 0 && nextLetter == '}' ||
@@ -344,8 +348,8 @@ namespace SkalProj_Datastrukturer_Minne
                         strings.Peek().Equals('[') && nextLetter == ']')
                             strings.Pop();
 
-                        arr = strings.ToArray();
-                        PrintCollectionBefore(arr);
+                        string[] tarr = strings.ToArray();
+                        PrintCollectionBefore(tarr);
 
                         if (i == (answer.Length - 1))
                         {
