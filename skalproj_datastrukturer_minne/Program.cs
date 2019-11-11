@@ -52,6 +52,9 @@ namespace SkalProj_Datastrukturer_Minne
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
                      */
+                    case '5':
+                        ReverseText();
+                        break;
                     case '0':
                         return;
                     default:
@@ -261,6 +264,9 @@ namespace SkalProj_Datastrukturer_Minne
 
                 switch (firstLetter)
                 {
+                    case 'Q':
+                        return;
+
                     case '+':
                         string[] arr = ica.ToArray();
                         PrintCollectionBefore(arr);
@@ -271,8 +277,65 @@ namespace SkalProj_Datastrukturer_Minne
                         PrintCollectionAfter(arr);
                         break;
 
+                    case '-':
+                        string[] carr = ica.ToArray();
+                        PrintCollectionBefore(carr);
 
+                        ica.Pop();
+
+                        carr = ica.ToArray();
+                        PrintCollectionAfter(carr);
+                        break;
+
+                    default:
+                        break;
                 }
+
+            }
+        }
+
+
+        static void ReverseText()
+        {
+            Stack<string> ica = new Stack<string>();
+            string answer = "";
+            char firstLetter = ' ';
+
+            while (true)
+            {
+                Console.WriteLine("'Q' to return to menu");
+                Console.WriteLine("'+' to push the person to the stack");
+
+                try
+                {
+
+                    answer = Console.ReadLine();
+                    firstLetter = answer[0];
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter some input!");
+                }
+
+                if (firstLetter == 'q' || firstLetter == 'Q') return;
+                else
+                {
+                    for (int i = 0; i < answer.Count(); i++)
+                    {
+                        firstLetter = answer[i];
+                        ica.Push(firstLetter.ToString());
+                    }
+                }
+
+                
+
+                string[] reversed = ica.ToArray();
+                for (int i = 0; i < reversed.Count(); i++)
+                {
+                    Console.Write(reversed[i]);
+                }
+                Console.WriteLine();
 
             }
         }
