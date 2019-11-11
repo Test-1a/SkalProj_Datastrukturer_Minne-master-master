@@ -406,12 +406,20 @@ namespace SkalProj_Datastrukturer_Minne
                             break;
                         }
 
-                        if (strings.Peek().Equals('(') && nextLetter == ')' ||
-                        strings.Peek().Equals('{') && nextLetter == '}' ||
-                        strings.Peek().Equals('[') && nextLetter == ']')
+                        if (strings.Peek() == '('.ToString() && nextLetter == ')' ||
+                        strings.Peek() == '{'.ToString() && nextLetter == '}' ||
+                        strings.Peek() == '['.ToString() && nextLetter == ']')
                             strings.Pop();
 
-                        string[] tarr = strings.ToArray();
+                        //if (strings.Peek() == '('.ToString() && nextLetter != ')' ||
+                        //strings.Peek() == '{'.ToString() && nextLetter != '}' ||
+                        //strings.Peek() == '['.ToString() && nextLetter != ']')
+                        //{
+                        //    Console.WriteLine($"{answer} is NOT wellformed 3!");
+                        //    break;
+                        //}
+
+                            string[] tarr = strings.ToArray();
                         PrintCollectionBefore(tarr);
 
                         if (i == (answer.Length - 1))
