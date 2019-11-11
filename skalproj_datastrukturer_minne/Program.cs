@@ -357,6 +357,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
+                strings.Clear();
                 Console.WriteLine("'Q' to return to menu");
                 Console.WriteLine("Write the text that you want to check if it is wellformed");
                 
@@ -396,6 +397,7 @@ namespace SkalProj_Datastrukturer_Minne
                             strings.Push(nextLetter.ToString());
                             string[] arr = strings.ToArray();
                             PrintCollectionBefore(arr);
+                            continue;
                         }
 
                         if (strings.Count == 0 && nextLetter == ')' ||
@@ -406,34 +408,53 @@ namespace SkalProj_Datastrukturer_Minne
                             break;
                         }
 
-                        if (strings.Peek() == '('.ToString() && nextLetter == ')' ||
-                        strings.Peek() == '{'.ToString() && nextLetter == '}' ||
-                        strings.Peek() == '['.ToString() && nextLetter == ']')
-                            strings.Pop();
+                        try
+                        {
+                            if (nextLetter == ')' && strings.Peek() != '('.ToString() ||
+                                nextLetter == '}' && strings.Peek() != '{'.ToString() ||
+                                 nextLetter == ']' && strings.Peek() != '['.ToString()
+                            )
+                            {
+                                Console.WriteLine($"{answer} is NOT wellformed 3!");
+                                break;
+                            }
 
-                        //if (strings.Peek() == '('.ToString() && nextLetter != ')' ||
-                        //strings.Peek() == '{'.ToString() && nextLetter != '}' ||
-                        //strings.Peek() == '['.ToString() && nextLetter != ']')
-                        //{
-                        //    Console.WriteLine($"{answer} is NOT wellformed 3!");
-                        //    break;
-                        //}
+                            if (strings.Peek() == '('.ToString() && nextLetter == ')' ||
+                                strings.Peek() == '{'.ToString() && nextLetter == '}' ||
+                                strings.Peek() == '['.ToString() && nextLetter == ']')
+                                    strings.Pop();
+                                //continue;
+
+
+                        }
+                        catch (InvalidOperationException)
+                        {
+
+                            //Console.Clear();
+                            Console.WriteLine("The Stack is empty!");
+                        }
+                        
 
                             string[] tarr = strings.ToArray();
                         PrintCollectionBefore(tarr);
 
-                        if (i == (answer.Length - 1))
-                        {
-                            if (strings.Count == 0) Console.WriteLine($"{answer} is wellformed");
-                            else Console.WriteLine($"{answer} is NOT wellformed 2");
-                        }
+                       
                     }
 
-                    
+                    if (i == (answer.Length - 1))
+                    {
+                        
+                        if (strings.Count == 0) Console.WriteLine($"{answer} is wellformed");
+                        else Console.WriteLine($"{answer} is NOT wellformed 2");
+                    }
+
+
                 }
 
                 
             }
+
+            
 
 
         }
