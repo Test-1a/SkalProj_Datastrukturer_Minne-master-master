@@ -23,17 +23,23 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
+                    + "\n5. ReverseText"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
-                try
-                {
-                    input = Console.ReadLine()[0]; //Tries to set input to the first char in an input line
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                }
+
+                //try
+                //{
+                //    input = Console.ReadLine()[0]; //Tries to set input to the first char in an input line
+                //}
+                //catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                //{
+                //    Console.Clear();
+                //    Console.WriteLine("Please enter some input!");
+                //}
+
+                string answer = TryToReadInput();
+                input = answer[0];
+
                 switch (input)
                 {
                     case '1':
@@ -112,17 +118,8 @@ namespace SkalProj_Datastrukturer_Minne
                 Console.WriteLine("'+' to add the text");
                 Console.WriteLine("'-' to remove the text");
 
-
-                try
-                {
-                    answer = Console.ReadLine();
-                    firstLetter = answer[0];
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                }
+                answer = TryToReadInput();
+                firstLetter = answer[0];
 
                 switch (firstLetter)
                 {
@@ -156,6 +153,24 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
+        private static string TryToReadInput()
+        {
+            string input = "";
+
+            try
+            {
+                input = Console.ReadLine();
+                //firstLetter = answer[0];
+            }
+            catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+            {
+                Console.Clear();
+                Console.WriteLine("Please enter some input!");
+            }
+
+            return input;
+        }
+
 
         /// <summary>
         /// Examines the datastructure Queue
@@ -179,16 +194,19 @@ namespace SkalProj_Datastrukturer_Minne
                 Console.WriteLine("'+' to add the person to the queue");
                 Console.WriteLine("'-' to remove the person from the queue");
 
-                try
-                {
-                    answer = Console.ReadLine();
-                    firstLetter = answer[0];
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                }
+                //try
+                //{
+                //    answer = Console.ReadLine();
+                //    //firstLetter = answer[0];
+                //}
+                //catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                //{
+                //    Console.Clear();
+                //    Console.WriteLine("Please enter some input!");
+                //}
+
+                answer = TryToReadInput();
+                firstLetter = answer[0];
 
                 switch (firstLetter)
                 {
@@ -249,18 +267,21 @@ namespace SkalProj_Datastrukturer_Minne
                 Console.WriteLine("'+' to push the person to the stack");
                 Console.WriteLine("'-' to pop the person from the stack");
 
-                try
-                {
+                //try
+                //{
                     
-                    answer = Console.ReadLine();
-                    Console.WriteLine($"Svar: {answer}");
-                    firstLetter = answer[0];
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                }
+                //    answer = Console.ReadLine();
+                    
+                //    //firstLetter = answer[0];
+                //}
+                //catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                //{
+                //    Console.Clear();
+                //    Console.WriteLine("Please enter some input!");
+                //}
+
+                answer = TryToReadInput();
+                firstLetter = answer[0];
 
                 switch (firstLetter)
                 {
@@ -306,17 +327,20 @@ namespace SkalProj_Datastrukturer_Minne
                 Console.WriteLine("'Q' to return to menu");
                 Console.WriteLine("'+' to push the person to the stack");
 
-                try
-                {
+                //try
+                //{
 
-                    answer = Console.ReadLine();
-                    firstLetter = answer[0];
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                }
+                //    answer = Console.ReadLine();
+                //    //firstLetter = answer[0];
+                //}
+                //catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                //{
+                //    Console.Clear();
+                //    Console.WriteLine("Please enter some input!");
+                //}
+
+                answer = TryToReadInput();
+                firstLetter = answer[0];
 
                 if (firstLetter == 'q' || firstLetter == 'Q') return;
                 else
@@ -360,26 +384,28 @@ namespace SkalProj_Datastrukturer_Minne
                 strings.Clear();
                 Console.WriteLine("'Q' to return to menu");
                 Console.WriteLine("Write the text that you want to check if it is wellformed");
-                
 
-                try
-                {
-                    answer = Console.ReadLine();
-                    Console.WriteLine($"Answer: {answer}");
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                }
 
+                //try
+                //{
+                //    answer = Console.ReadLine();
+
+                //}
+                //catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                //{
+                //    Console.Clear();
+                //    Console.WriteLine("Please enter some input!");
+                //}
+
+                answer = TryToReadInput();
+               
                 for (int i = 0; i < answer.Count(); i++)
                 {
                     nextLetter = answer[i];
-                    Console.WriteLine($"i: {nextLetter}");
-
+                    
                     if (nextLetter == 'q' || nextLetter == 'Q') return;
 
+                    //if next equals LEFT or Right
                     if (nextLetter == '(' ||
                         nextLetter == '{' ||
                         nextLetter == '[' ||
@@ -387,8 +413,7 @@ namespace SkalProj_Datastrukturer_Minne
                         nextLetter == '}' ||
                         nextLetter == ']')
                     {
-                        Console.WriteLine($"i2: {nextLetter}");
-
+                        //if next equals LEFT => Push()
                         if (nextLetter == '('
                             || nextLetter == '{'
                             || nextLetter == '['
@@ -400,6 +425,7 @@ namespace SkalProj_Datastrukturer_Minne
                             continue;
                         }
 
+                        //if Stack is empty and next equals Right => return
                         if (strings.Count == 0 && nextLetter == ')' ||
                         strings.Count == 0 && nextLetter == '}' ||
                         strings.Count == 0 && nextLetter == ']')
@@ -410,6 +436,7 @@ namespace SkalProj_Datastrukturer_Minne
 
                         try
                         {
+                            //if next equals RIGHT & Peek is not corresponding => break
                             if (nextLetter == ')' && strings.Peek() != '('.ToString() ||
                                 nextLetter == '}' && strings.Peek() != '{'.ToString() ||
                                  nextLetter == ']' && strings.Peek() != '['.ToString()
@@ -419,6 +446,7 @@ namespace SkalProj_Datastrukturer_Minne
                                 break;
                             }
 
+                            //if next equals RIGHT and Peek is corresponding => Pop()
                             if (strings.Peek() == '('.ToString() && nextLetter == ')' ||
                                 strings.Peek() == '{'.ToString() && nextLetter == '}' ||
                                 strings.Peek() == '['.ToString() && nextLetter == ']')
@@ -441,6 +469,7 @@ namespace SkalProj_Datastrukturer_Minne
                        
                     }
 
+                    //have iterated the whole input string  => END
                     if (i == (answer.Length - 1))
                     {
                         
